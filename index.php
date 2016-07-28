@@ -140,15 +140,21 @@ function showOrder()
     echo '<h4 align="center">Your order for</h4>';
     if(isset($_POST['submit'])){
         if(!empty($_POST['Taco'])){
-            $total = 0;
+            $subtotal = 0;
             foreach ($_POST['Taco'] as $key => $value){
-                $total += $key;
+                $subtotal += $key;
                 echo '<p align="center">' . $value . ' tacos</p>';
             }
             
             
         }
     echo '<h4 align="center"> has been submitted!</h4>';
+    echo '<h4 align="center">Your subtotal is: $' . $subtotal . '</h4>';
+    $tax = 0;
+    $tax = number_format(($subtotal * .096), 2);
+    echo '<h4 align="center">Your tax is: $' . $tax . '</h4>';
+    $total = 0;
+    $total = $subtotal + $tax;
     echo '<h4 align="center">Your total is: $' . $total . '</h4>';
     }   
     
